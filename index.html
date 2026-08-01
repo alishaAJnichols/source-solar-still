@@ -252,13 +252,15 @@ function renderProgress() {
   }
 }
 
-function goTo(n) {
+function goTo(n, skipScroll) {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   step = n;
   document.querySelector('.step[data-step="' + n + '"]').classList.add('active');
   renderProgress();
   document.getElementById('restart-wrap').style.display = n === 7 ? 'block' : 'none';
-  window.scrollTo({ top: document.querySelector('.wizard').offsetTop - 20, behavior: 'smooth' });
+  if (!skipScroll) {
+    window.scrollTo({ top: document.querySelector('.wizard').offsetTop - 20, behavior: 'smooth' });
+  }
 }
 
 function adjust(key, delta) {
@@ -487,7 +489,7 @@ function switchTab(name) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === name));
 }
 
-renderProgress();
+goTo(0, true);
 </script>
 
 </body>
