@@ -1,0 +1,8 @@
+<svg width="200" height="200" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <g transform="rotate(-10 20 20)">
+    <path d="M22 3 C22 3 33 18 32 26 C31.3 33.2 25.6 38 19 38 C12.5 38 7.4 33 7.9 26 C8.4 19.8 15.8 6.5 22 3 Z"
+          fill="none" stroke="#4A7E99" stroke-width="2.4" stroke-linejoin="round"/>
+  </g>
+  <text x="20" y="29" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700"
+        font-size="18" fill="#1F9E52">S</text>
+</svg>
