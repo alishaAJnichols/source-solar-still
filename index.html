@@ -40,7 +40,7 @@
   .wrap { max-width: 660px; margin: 0 auto; padding: 36px 20px 100px; }
 
   /* header */
-  .brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+  .brand-row { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
   .brand-name { font-family: 'Fraunces', serif; font-weight: 700; font-size: 19px; }
 
   /* vision */
@@ -171,6 +171,10 @@
       </svg>
       <span class="brand-name">Stillwater</span>
     </div>
+    <a href="#" onclick="document.getElementById('mode-body').classList.add('open'); document.getElementById('mode-chev').style.transform='rotate(90deg)'; document.getElementById('mode-body').scrollIntoView({behavior:'smooth', block:'center'}); return false;"
+       style="display:inline-flex; align-items:center; gap:6px; background:var(--cream); border:1.5px solid var(--line); border-radius:20px; padding:8px 14px; font-size:13px; font-weight:700; color:var(--ink); text-decoration:none;">
+      🎮 Explore/Build
+    </a>
     <a href="#" onclick="document.getElementById('engineer-body').classList.add('open'); document.getElementById('engineer-chev').style.transform='rotate(90deg)'; document.getElementById('engineer-body').scrollIntoView({behavior:'smooth', block:'center'}); return false;"
        style="display:inline-flex; align-items:center; gap:6px; background:var(--cream); border:1.5px solid var(--line); border-radius:20px; padding:8px 14px; font-size:13px; font-weight:700; color:var(--ink); text-decoration:none;">
       🛠️ Engineers
@@ -219,6 +223,22 @@
   </div>
 
   <div class="learn-section" style="margin-bottom: 24px;">
+    <div style="background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:20px;">
+      <div style="font-weight:700; font-size:15px; color:var(--ink); margin-bottom:4px;">🔬 Try it: what does tilt angle actually do?</div>
+      <p style="font-size:13px; color:var(--ink-soft); margin-bottom:14px;">Drag the slider. The 3D shape and the yield estimate both update live — published solar still research finds the highest output clusters around 20-23°, but that's not automatically the "right" answer for every situation (more on that below).</p>
+      <input type="range" id="lab-tilt-slider" min="5" max="50" value="22" step="1" oninput="updateDesignLab(this.value)" style="width:100%; margin-bottom:10px;">
+      <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--ink-soft); margin-bottom:14px;">
+        <span>Tilt: <strong id="lab-tilt-readout" style="color:var(--ink);">22°</strong></span>
+        <span>Estimated yield: <strong id="lab-yield-readout" style="color:var(--ink);">—</strong></span>
+      </div>
+      <div id="lab-3d-preview" style="width:100%; height:240px; border-radius:8px; border:1px solid var(--line); background:var(--cream); overflow:hidden;"></div>
+      <div class="note-box" style="margin-top:14px;">
+        <strong>Why there's no single "best" angle:</strong> a lower tilt (5-10°) captures more direct sunlight and can maximize short-term/summer output. A tilt matched to your actual latitude (see the wizard's climate step) trades some peak output for steadier performance across the whole year. The ~20-23° range clustering in published studies is often a middle ground, not a universal optimum — what you're optimizing for changes the right answer. This estimate is illustrative, built from published research ranges, not a lab measurement of your specific build.
+      </div>
+    </div>
+  </div>
+
+  <div class="learn-section" style="margin-bottom: 24px;">
     <button class="learn-toggle" onclick="document.getElementById('engineer-body').classList.toggle('open'); this.querySelector('.chev').style.transform = document.getElementById('engineer-body').classList.contains('open') ? 'rotate(90deg)' : 'none';"
       style="width:100%; display:flex; justify-content:space-between; align-items:center; background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:16px 20px; cursor:pointer; font-family:'Inter',sans-serif;">
       <span style="font-weight:700; font-size:15px; color:var(--ink);">🛠️ Engineers — help make this real</span>
@@ -229,8 +249,26 @@
       <div class="result-card">
         <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:10px;">This design is built from real calculations — water-need math, climate yield rates, actual material costs — not a generic template. What it hasn't had yet is a professional structural or engineering review, and that's the gap this is asking for help with.</p>
         <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:10px;"><strong>To be clear about what this is:</strong> this is a request for informal, volunteer peer review — someone with engineering knowledge (licensed or not) looking at the structural logic, tilt/wind assumptions, or material choices and telling us what's wrong or worth reconsidering. It is <strong>not</strong> a request for formal professional certification, a paid consulting engagement, or anything that implies you're assuming professional liability for this design by leaving a note. If you're a licensed PE and this ever reaches the point of wanting an actual formal sign-off, that would be a separate, deliberate, almost certainly paid conversation — not something implied by reaching out here.</p>
-        <p style="font-size:13px; color:var(--ink-soft); margin-bottom:12px;">Reviewed privately — use the notes field below to tell us about your background and what you'd want to weigh in on (the form's built for video suggestions, so just ignore the video-link field or leave it blank).</p>
+        <p style="font-size:13px; color:var(--ink-soft); margin-bottom:12px;">Reviewed privately — use the notes field below to tell us about your background and what you'd want to weigh in on (the form's built for video suggestions, so just ignore the video-link field or leave it blank). Prefer email? <a href="mailto:alishajnichols@gmail.com?subject=Stillwater%20%E2%80%94%20Engineer%20Interest" style="color:var(--blue-deep); font-weight:600;">alishajnichols@gmail.com</a> works too.</p>
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdBqLlZKyKybqCNfCjFym72HS46O0GXNH1pwl_xfz6yMZBE-g/viewform?embedded=true" width="100%" height="480" frameborder="0" style="border-radius:6px; border:1px solid var(--line);">Loading…</iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="learn-section" style="margin-bottom: 24px;">
+    <button class="learn-toggle" onclick="document.getElementById('mode-body').classList.toggle('open'); this.querySelector('.chev').style.transform = document.getElementById('mode-body').classList.contains('open') ? 'rotate(90deg)' : 'none';"
+      style="width:100%; display:flex; justify-content:space-between; align-items:center; background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:16px 20px; cursor:pointer; font-family:'Inter',sans-serif;">
+      <span style="font-weight:700; font-size:15px; color:var(--ink);">🎮 Explore / Build mode</span>
+      <span id="mode-chev" class="chev" style="transition:transform .15s ease; color:var(--ink-soft);">›</span>
+    </button>
+    <div id="mode-body" style="display:none; margin-top:10px;">
+      <style>#mode-body.open { display: block !important; }</style>
+      <div class="result-card">
+        <div style="display:inline-flex; border:1.5px solid var(--line); border-radius:20px; overflow:hidden;">
+          <button id="mode-explore" onclick="setMode('explore')" style="border:none; background:var(--neon-deep); color:var(--paper); font-weight:700; font-size:12.5px; padding:7px 14px; cursor:pointer; font-family:'Inter',sans-serif;">🎮 Explore</button>
+          <button id="mode-build" onclick="setMode('build')" style="border:none; background:none; color:var(--ink-soft); font-weight:700; font-size:12.5px; padding:7px 14px; cursor:pointer; font-family:'Inter',sans-serif;">🔧 Build</button>
+        </div>
+        <div id="mode-desc" style="font-size:12.5px; color:var(--ink-soft); margin-top:8px;"></div>
       </div>
     </div>
   </div>
@@ -343,13 +381,6 @@
   </div>
 
   <div class="wizard">
-    <div style="margin-bottom:14px;">
-      <div style="display:inline-flex; border:1.5px solid var(--line); border-radius:20px; overflow:hidden;">
-        <button id="mode-explore" onclick="setMode('explore')" style="border:none; background:var(--neon-deep); color:var(--paper); font-weight:700; font-size:12.5px; padding:7px 14px; cursor:pointer; font-family:'Inter',sans-serif;">🎮 Explore</button>
-        <button id="mode-build" onclick="setMode('build')" style="border:none; background:none; color:var(--ink-soft); font-weight:700; font-size:12.5px; padding:7px 14px; cursor:pointer; font-family:'Inter',sans-serif;">🔧 Build</button>
-      </div>
-      <div id="mode-desc" style="font-size:12.5px; color:var(--ink-soft); margin-top:6px;"></div>
-    </div>
     <div style="display:flex; justify-content:flex-end; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
       <div style="display:inline-flex; border:1.5px solid var(--line); border-radius:20px; overflow:hidden;">
         <button id="region-intl" onclick="setRegion('intl')" style="border:none; background:var(--neon-deep); color:var(--paper); font-weight:700; font-size:12px; padding:6px 12px; cursor:pointer; font-family:'Inter',sans-serif;">Global search</button>
@@ -858,18 +889,35 @@ function computeDesign() {
   return { ...p, budgetTier, budgetNum };
 }
 
-let __threeState = null;
-function render3DPreview(widthIn, depthIn, budgetTier) {
-  const container = document.getElementById('threeD-preview');
+let __threeStates = {};
+// Illustrative yield model, anchored to published research: peak ~2.0 L/m2/day
+// clustering around 20-23 deg tilt (multiple studies cited in-app), falling off
+// on either side. Not a lab measurement - a rough teaching estimate.
+function estimateYield(tiltDeg) {
+  const rel = Math.max(0.15, 1 - 0.0022 * Math.pow(tiltDeg - 21, 2));
+  return (rel * 2.0).toFixed(2);
+}
+function updateDesignLab(tiltVal) {
+  const tiltDeg = parseFloat(tiltVal);
+  document.getElementById('lab-tilt-readout').textContent = tiltDeg + '°';
+  document.getElementById('lab-yield-readout').textContent = estimateYield(tiltDeg) + ' L/m²/day';
+  render3DPreview(20, 14, 'mid', { containerId: 'lab-3d-preview', tiltDeg: tiltDeg });
+}
+
+function render3DPreview(widthIn, depthIn, budgetTier, opts) {
+  opts = opts || {};
+  const containerId = opts.containerId || 'threeD-preview';
+  const tiltDegOverride = opts.tiltDeg;
+  const container = document.getElementById(containerId);
   if (!container || typeof THREE === 'undefined') return;
 
-  // Stop any previous render loop before starting a new one
-  if (__threeState && __threeState.frameId) cancelAnimationFrame(__threeState.frameId);
+  // Stop any previous render loop for this specific container before starting a new one
+  if (__threeStates[containerId] && __threeStates[containerId].frameId) cancelAnimationFrame(__threeStates[containerId].frameId);
   container.innerHTML = '';
 
   const w = container.clientWidth || 400;
   const h = 260;
-  const tiltDeg = getTiltDeg();
+  const tiltDeg = (typeof tiltDegOverride === 'number' && !isNaN(tiltDegOverride)) ? tiltDegOverride : getTiltDeg();
   const tiltRad = tiltDeg * Math.PI / 180;
   const frontH = 6; // illustrative basin wall height, inches
   const backH = frontH + depthIn * Math.tan(tiltRad);
@@ -924,12 +972,13 @@ function render3DPreview(widthIn, depthIn, budgetTier) {
   scene.remove(glaz);
   scene.add(rig);
 
+  if (!__threeStates[containerId]) __threeStates[containerId] = {};
   function animate() {
     rig.rotation.y += 0.006;
     renderer.render(scene, camera);
-    __threeState.frameId = requestAnimationFrame(animate);
+    __threeStates[containerId].frameId = requestAnimationFrame(animate);
   }
-  __threeState = { frameId: null };
+  __threeStates[containerId].frameId = null;
   animate();
 }
 
@@ -1382,6 +1431,7 @@ function switchTab(name) {
 }
 
 setMode('explore');
+updateDesignLab(22);
 goTo(0, true);
 </script>
 
